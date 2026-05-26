@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيد أضحى مبارك - رهف</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- مكتبة للحركات السلسة -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <style>
+        :root {
+            --gold-primary: #FDE047;
+            --gold-dark: #B45309;
+            --bg-dark: #0a0a14;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            background-color: var(--bg-dark);
+            perspective: 1000px;
+        }
+
+        /* */
+        .ruqaa-font {
+            font-family: 'Aref Ruqaa', serif;
+        }
+
+        /* خلفية متدرجة متحركة */
+        .ambient-bg {
+            position: absolute;
+            inset: -50%;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(180, 83, 9, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(253, 224, 71, 0.1) 0%, transparent 40%);
+            animation: rotateBg 30s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotateBg {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* */
+        .premium-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(253, 224, 71, 0.2);
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.6),
+                inset 0 0 0 1px rgba(255,255,255,0.05),
+                inset 0 0 30px rgba(253, 224, 71, 0.05);
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        /* النص الذهبي اللامع */
+        .gold-text {
+            background: linear-gradient(to bottom, #FFFDE7, #FBC02D, #F57F17);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 4px 20px rgba(253, 224, 71, 0.3);
+        }
+
+        /* */
+        .float-slow {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 15px rgba(253,224,71,0.4)); }
+            50% { transform: translateY(-20px) scale(1.05); filter: drop-shadow(0 0 25px rgba(253,224,71,0.7)); }
+        }
+
+        /* ذرات الذهب المتطايرة */
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, #fff 0%, #FDE047 50%, transparent 100%);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .name-highlight {
+            position: relative;
+            display: inline-block;
+        }
+        .name-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+            box-shadow: 0 0 10px var(--gold-primary);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative text-white">
+
+    <!-- -->
+    <div class="ambient-bg"></div>
+    <div id="particles-container" class="absolute inset-0 z-0 pointer-events-none"></div>
+
+    <!-- البطاقة الرئيسية (قابلة للتحريك بالماوس) -->
+    <div id="card" class="premium-card relative z-10 w-full max-w-xl mx-4 px-8 py-16 rounded-[2.5rem] text-center">
+        
+        <!-- إضاءة علوية للبطاقة -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-yellow-400 to-transparent opacity-50"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-4 bg-yellow-400 blur-2xl opacity-20"></div>
+
+        <!-- -->
+        <div class="gsap-item opacity-0 translate-y-8 flex justify-center mb-8 float-slow">
+            <!-- أيقونة فانوس مزخرف -->
+            <svg class="w-24 h-24 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" class="opacity-30"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path>
+                <circle cx="12" cy="9" r="2" fill="currentColor"></circle>
+            </svg>
+        </div>
+
+        <h1 class="gsap-item opacity-0 translate-y-8 ruqaa-font text-4xl md:text-5xl font-bold gold-text mb-4 tracking-wider">
+            عيد أضحى مبارك
+        </h1>
+        
+        <!-- -->
+        <h2 class="gsap-item opacity-0 translate-y-8 ruqaa-font text-6xl md:text-8xl font-bold text-white mb-10 mt-6 drop-shadow-2xl">
+            يا نبض القلب <br>
+            <span class="name-highlight gold-text mt-4 inline-block">رهف</span>
+        </h2>
+
+        <div class="gsap-item opacity-0 translate-y-8 relative">
+            <p class="text-xl md:text-2xl text-gray-300 leading-loose mb-10 px-4 font-medium" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+                أنتِ عيدي قبل أن يبدأ العيد،<br>
+                وأنتِ فرحتي التي لا تنتهي.<br>
+                كل عام وأنتِ الأجمل في عيني والأقرب لقلبي. 🤍
+            </p>
+        </div>
+
+        <!-- -->
+        <div class="gsap-item opacity-0 translate-y-8 flex items-center justify-center gap-6 mb-10">
+            <div class="h-[1px] w-24 bg-gradient-to-l from-yellow-500/50 to-transparent"></div>
+            <div class="transform rotate-45 w-3 h-3 border border-yellow-400 bg-yellow-900/50 shadow-[0_0_15px_rgba(253,224,71,0.6)]"></div>
+            <div class="h-[1px] w-24 bg-gradient-to-r from-yellow-500/50 to-transparent"></div>
+        </div>
+
+        <div class="gsap-item opacity-0 translate-y-4 mt-8">
+            <p class="text-sm text-gray-500 font-light tracking-[0.2em] transition-all duration-300 hover:text-yellow-200">
+                بكل حُب، <br>
+                <span class="font-bold text-yellow-500 ruqaa-font text-xl mt-2 inline-block">قيس جازي</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- -->
+    <script>
+        // تأثير حركة البطاقة 3D مع الماوس
+        const card = document.getElementById('card');
+        const cardRect = card.getBoundingClientRect();
+
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            
+            // إضافة smooth transition للماوس
+            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // إرجاع البطاقة لوضعها الطبيعي عند خروج الماوس (لشاشات الكمبيوتر)
+        document.addEventListener('mouseleave', () => {
+            card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+            card.style.transition = "transform 0.5s ease";
+        });
+        
+        document.addEventListener('mouseenter', () => {
+            card.style.transition = "none";
+        });
+
+        //        // إنشاء ذرات ذهبية متحركة في الخلفية
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 60;
+
+            for (let i = 0; i < particleCount; i++) {
+                let particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                let size = Math.random() * 4 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                
+                container.appendChild(particle);
+
+                // استخدام GSAP لتحريك الذرات بشكل عشوائي ومستمر
+                gsap.to(particle, {
+                    y: `-${Math.random() * 100 + 50}vh`,
+                    x: `${(Math.random() - 0.5) * 50}vw`,
+                    opacity: Math.random() * 0.5 + 0.1,
+                    duration: Math.random() * 10 + 5,
+                    ease: "none",
+                    repeat: -1,
+                    delay: -Math.random() * 10
+                });
+            }
+        }
+
+        //        // تشغيل الأنيميشن عند تحميل الصفحة
+        window.onload = () => {
+            createParticles();
+
+            // دخول درامي لعناصر البطاقة
+            gsap.to(".gsap-item", {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                stagger: 0.2, // ظهور متتابع
+                ease: "power3.out",
+                delay: 0.5
+            });
+            
+            // إضافة تأثير ظهور للبطاقة نفسها
+            gsap.from(card, {
+                scale: 0.9,
+                opacity: 0,
+                duration: 1.5,
+                ease: "power2.out"
+            });
+        };
+    </script>
+</body>
+</html>
